@@ -10,3 +10,14 @@ export async function fetchAllBooks() {
     console.error(error);
   }
 }
+
+//for SingleBook.jsx component
+export async function fetchSingleBook() {
+  try {
+    const res = await fetch(`${BASE_URL}/books/${id}`);
+    const result = await res.json();
+    return result;
+  } catch(error) {
+    console.error(error);
+  }
+}
