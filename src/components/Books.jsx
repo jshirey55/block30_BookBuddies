@@ -8,6 +8,7 @@ import "../styles/books.css";
 
 function Books() {
   const [books, setBooks] = useState();
+  const [searchBook, setSearchBook] = useState("");
 
   useEffect(() => {
     async function getBooks() {
@@ -20,9 +21,15 @@ function Books() {
     getBooks();
   }, []);
 
+  //filter first if user typed in searchBar, if not by default books will be map
+  const filterMapBooks = searchBook
+    ? books.filter((book) =>
+        book.title.toLowerCase().includes(searchBook.toLowerCase())
+      )
+    : books;
   //map the array of books and for each book it return: <div className="single-book"> ... </div>
   function mapBooks() {
-    return books.map((book) => {
+    return filterMapBooks.map((book) => {
       return (
         <div className="single-book" key={book.id}>
           <img id="logo-icon" src={bookIcon} />
@@ -47,6 +54,16 @@ function Books() {
   return (
     <div>
       <h2>Welcome to BookBuddies</h2>
+      <div className="searchBar">
+        <label>
+          Search Book
+          <input
+            type="text"
+            placeholder="Search"
+            onChange={(evt) => setSearchBook(evt.target.value)}
+          />
+        </label>
+      </div>
       {/* Conditional Render: checks if there is something in 'books' before it renders the mapBooks() */}
       {books && <div className="books-container">{mapBooks()}</div>}
     </div>

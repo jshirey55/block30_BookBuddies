@@ -2,7 +2,7 @@ import bookLogo from "./assets/books.png";
 import { Navigate, Route, Routes } from "react-router-dom";
 import Books from "./components/Books";
 import SingleBook from "./components/SingleBook";
-import Register from "./components/Register";
+// import Register from "./components/Register";
 // import Login from "./components/Login";
 import Account from "./components/Account";
 import Navigation from "./components/Navigation";

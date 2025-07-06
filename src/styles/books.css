@@ -47,3 +47,7 @@ h2 {
   place-self: center;
   margin-top: 50px;
 }
+
+.searchBar {
+  place-self: center;
+}
