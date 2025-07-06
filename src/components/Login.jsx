@@ -1,6 +1,5 @@
 /* TODO - add your code to create a functional React component that renders a login form */
 import { useState } from "react";
-import { Link } from "react-router-dom";
 
 export default function Login({ token }) {
     const [email, setEmail] = useState('');
@@ -16,9 +15,8 @@ export default function Login({ token }) {
                     body: JSON.stringify({ email, password }),
                 });
                 const data = await response.json();
+                console.log(data)
 
-            console.log(data)
-            setLogin(result.data)
         } catch(error) {
             console.error(error)
         }
@@ -27,14 +25,14 @@ export default function Login({ token }) {
     return (
         <>
         <h2>Login</h2>
-        <form onSubmit={handleSubmit}></form>
+        <form onSubmit={handleSubmit}>
             <div>
                 <label htmlFor="email">Email:
                     <input 
                         type="email"
                         id="email"
                         value={email}
-                        onChange={(event) => setUsername(event.target.value)}
+                        onChange={(event) => setEmail(event.target.value)}
                     />
                 </label>
                 <label htmlFor="password">Password:
@@ -42,11 +40,12 @@ export default function Login({ token }) {
                         type="password"  
                         id="password"
                         value={password}
-                        onChange={(event) => setUsername(event.target.value)}
+                        onChange={(event) => setPassword(event.target.value)}
                     />
                 </label>
             </div>
             <button type="submit">Login</button>
+        </form>
         </>
     )
 }
