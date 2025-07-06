@@ -3,7 +3,7 @@ import { Navigate, Route, Routes } from "react-router-dom";
 import Books from "./components/Books";
 import SingleBook from "./components/SingleBook";
 import Register from "./components/Register";
-// import Login from "./components/Login";
+import Login from "./components/Login";
 import Account from "./components/Account";
 import Navigation from "./components/Navigation";
 
@@ -24,7 +24,7 @@ function App() {
         <Route path="/books" element={<Books />} />
         <Route path="/books/:id" element={<SingleBook />} />
         {/* <Route path="/register" element={<Register />} /> */}
-        {/* <Route path="/login" element={<Login />} /> */}
+        <Route path="/login" element={<Login />} />
         <Route path="/account" element={<Account />} />
       </Routes>
     </>

@@ -16,6 +16,9 @@ function Navigation() {
       <Link className="links" to="/account">
         Account
       </Link>
+      <Link className="links" to="/login">
+        Login
+      </Link>
     </div>
   );
 }
