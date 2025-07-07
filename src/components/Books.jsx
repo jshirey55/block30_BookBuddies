@@ -22,13 +22,18 @@ function Books() {
 
   //map the array of books and for each book it return: <div className="single-book"> ... </div>
   function mapBooks() {
+    
+
     return books.map((book) => {
+      const available = book.available ? book.title :
+      <span style={{ color: 'red' }}>{book.title}</span>
+      
       return (
         <div className="single-book" key={book.id}>
           <img id="logo-icon" src={bookIcon} />
           <div className="book-details">
             <span>
-              <strong>Title:</strong> {book.title}
+              <strong>Title:</strong> {available}
             </span>
             <span>
               <strong>Author:</strong> {book.author}
