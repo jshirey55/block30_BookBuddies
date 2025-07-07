@@ -20,3 +20,14 @@
   justify-content: center;
   text-decoration: none;
 }
+
+.regisForm {
+  display: grid;
+  align-items: center;
+  justify-content: center;
+}
+
+.regisBtn {
+  margin-top: 25px;
+}
+
