@@ -23,7 +23,7 @@ function App() {
         <Route index element={<Navigate to="/books" replace />} />
         <Route path="/books" element={<Books />} />
         <Route path="/books/:id" element={<SingleBook />} />
-        {/* <Route path="/register" element={<Register />} /> */}
+        <Route path="/register" element={<Register />} />
         <Route path="/login" element={<Login />} />
         <Route path="/account" element={<Account />} />
       </Routes>

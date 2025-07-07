@@ -13,11 +13,14 @@ function Navigation() {
       <Link className="links" to="/books">
         Books
       </Link>
-      <Link className="links" to="/account">
-        Account
+       <Link className="links" to="/register">
+        Register
       </Link>
       <Link className="links" to="/login">
         Login
+      </Link>
+      <Link className="links" to="/account">
+        Account
       </Link>
     </div>
   );
