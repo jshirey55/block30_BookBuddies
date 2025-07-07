@@ -1,6 +1,10 @@
 import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
+import { useContext } from "react";
+import TokenContext from "./TokenContext";
+
 const useAuth = () => ({ isLoggedIn: true });
+
 function SingleBook() {
   const { id } = useParams();
   const { isLoggedIn } = useAuth();
@@ -8,6 +12,9 @@ function SingleBook() {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
   const [isModalOpen, setIsModalOpen] = useState(false);
+
+  const { token } = useContext(TokenContext);
+
   useEffect(() => {
     const fetchBook = async () => {
       try {
@@ -25,9 +32,32 @@ function SingleBook() {
     };
     fetchBook();
   }, [id]);
-  const handleCheckoutClick = () => {
-    setIsModalOpen(true);
-  };
+
+  async function handleCheckoutClick(id) {
+    // setIsModalOpen(true);
+    console.log("reserve book" + id);
+    try {
+      const response = await fetch(
+        `https://fsa-book-buddy-b6e748d1380d.herokuapp.com/api/reservations`,
+        {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+            Authorization: `Bearer ${token}`,
+          },
+          body: JSON.stringify({
+            bookId: id,
+          }),
+        }
+      );
+
+      const result = await response.json();
+      console.log("Reserve button result: ", result);
+    } catch (error) {
+      console.error(error);
+    }
+  }
+
   const handleCloseModal = () => {
     setIsModalOpen(false);
   };
@@ -47,7 +77,9 @@ function SingleBook() {
           </p>
           <p>{book.description}</p>
           {isLoggedIn && (
-            <button onClick={handleCheckoutClick}>Checkout</button>
+            <button onClick={() => handleCheckoutClick(book.id)}>
+              Checkout
+            </button>
           )}
           {/* Modal */}
           {isModalOpen && (
