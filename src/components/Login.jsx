@@ -1,5 +1,6 @@
 /* TODO - add your code to create a functional React component that renders a login form */
 import { useState } from "react";
+import "../styles/login.css";
 
 export default function Login({ token }) {
     const [email, setEmail] = useState('');
@@ -25,18 +26,20 @@ export default function Login({ token }) {
     return (
         <>
         <h2>Login</h2>
-        <form onSubmit={handleSubmit}>
+        <form onSubmit={handleSubmit} className="loginForm">
             <div>
-                <label htmlFor="email">Email:
+                <label htmlFor="email" className="email">Email:
                     <input 
+                        className="email"
                         type="email"
                         id="email"
                         value={email}
                         onChange={(event) => setEmail(event.target.value)}
                     />
-                </label>
-                <label htmlFor="password">Password:
+                </label><br />
+                <label htmlFor="password" className="password">Password:
                     <input 
+                        className="password"
                         type="password"  
                         id="password"
                         value={password}
@@ -44,7 +47,7 @@ export default function Login({ token }) {
                     />
                 </label>
             </div>
-            <button type="submit">Login</button>
+            <button type="submit" className="submit">Login</button>
         </form>
         </>
     )
