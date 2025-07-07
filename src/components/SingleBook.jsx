@@ -11,7 +11,9 @@ function SingleBook() {
   useEffect(() => {
     const fetchBook = async () => {
       try {
-        const res = await fetch(`https://your-api.com/books/${id}`);
+        const res = await fetch(
+          `https://fsa-book-buddy-b6e748d1380d.herokuapp.com/api/books/${id}`
+        );
         if (!res.ok) throw new Error("Book not found");
         const data = await res.json();
         setBook(data);
