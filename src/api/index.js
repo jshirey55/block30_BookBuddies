@@ -21,3 +21,14 @@ export async function fetchSingleBook() {
     console.error(error);
   }
 }
+
+//for Login.jsx component
+// export async function fetchLogin() {
+//   try {
+//     const res = await fetch(`${BASE_URL}/users/login`);
+//     const result = await res.json();
+//     return result;
+//   } catch(error) {
+//     console.error(error);
+//   }
+// }
