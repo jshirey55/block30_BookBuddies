@@ -1,11 +1,92 @@
-/* TODO - add your code to create a functional React component that renders details for a single book. Fetch the book data from the provided API. You may consider conditionally rendering a 'Checkout' button for logged in users. */
+import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
-
+const useAuth = () => ({ isLoggedIn: true });
 function SingleBook() {
-  //you can useParams to get the SingleBook and fetch the specific book from API based on id
   const { id } = useParams();
-
-  return <div>the book id is {id}</div>;
+  const { isLoggedIn } = useAuth();
+  const [book, setBook] = useState(null);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState(null);
+  const [isModalOpen, setIsModalOpen] = useState(false);
+  useEffect(() => {
+    const fetchBook = async () => {
+      try {
+        const res = await fetch(`https://your-api.com/books/${id}`);
+        if (!res.ok) throw new Error("Book not found");
+        const data = await res.json();
+        setBook(data);
+      } catch (err) {
+        setError(err.message);
+      } finally {
+        setLoading(false);
+      }
+    };
+    fetchBook();
+  }, [id]);
+  const handleCheckoutClick = () => {
+    setIsModalOpen(true);
+  };
+  const handleCloseModal = () => {
+    setIsModalOpen(false);
+  };
+  const handleConfirmCheckout = () => {
+    alert("Book checked out!");
+    setIsModalOpen(false);
+  };
+  return (
+    <div className="single-book">
+      {loading && <p>Loading book details...</p>}
+      {error && <p>Error: {error}</p>}
+      {book && (
+        <>
+          <h2>{book.title}</h2>
+          <p>
+            <strong>Author:</strong> {book.author}
+          </p>
+          <p>{book.description}</p>
+          {isLoggedIn && (
+            <button onClick={handleCheckoutClick}>Checkout</button>
+          )}
+          {/* Modal */}
+          {isModalOpen && (
+            <div className="modal-overlay">
+              <div className="modal-content">
+                <h3>Confirm Checkout</h3>
+                <p>
+                  Are you sure you want to checkout{" "}
+                  <strong>{book.title}</strong>?
+                </p>
+                <button onClick={handleConfirmCheckout}>Yes</button>
+                <button onClick={handleCloseModal}>Cancel</button>
+              </div>
+            </div>
+          )}
+        </>
+      )}
+      {/* Minimal CSS */}
+      <style>{`
+        .modal-overlay {
+          position: fixed;
+          top: 0;
+          left: 0;
+          width: 100%;
+          height: 100%;
+          background: rgba(0,0,0,0.5);
+          display: flex;
+          align-items: center;
+          justify-content: center;
+        }
+        .modal-content {
+          background: #fff;
+          padding: 2rem;
+          border-radius: 8px;
+          box-shadow: 0 4px 12px rgba(0,0,0,0.3);
+        }
+        .modal-content button {
+          margin-right: 1rem;
+        }
+      `}</style>
+    </div>
+  );
 }
-
 export default SingleBook;
