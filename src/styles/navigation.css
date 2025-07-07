@@ -7,27 +7,22 @@
   display: grid;
   grid-template-columns: 2fr 1fr 1fr;
 }
-
 .logo-name {
   display: flex;
   align-items: center;
   justify-content: center;
 }
-
 .links {
   place-self: center;
   place-items: center;
   justify-content: center;
   text-decoration: none;
 }
-
 .regisForm {
   display: grid;
   align-items: center;
   justify-content: center;
 }
-
 .regisBtn {
   margin-top: 25px;
 }
-
