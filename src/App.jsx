@@ -16,10 +16,9 @@ function App() {
         Library App
       </h1>
 
-      {/* This Navigation will display across all pages */}
-      <Navigation />
-
       <TokenProvider>
+        {/* This Navigation will display across all pages */}
+        <Navigation />
         <Routes>
           {/* Default route '/' will be redirected to '/books' */}
           <Route index element={<Navigate to="/books" replace />} />

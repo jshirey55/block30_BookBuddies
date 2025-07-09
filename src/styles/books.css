@@ -47,3 +47,20 @@ h2 {
   place-self: center;
   margin-top: 50px;
 }
+
+.search-bar-container {
+  place-self: center;
+}
+
+.return-button {
+  font-family: Georgia, serif;
+  font-size: 16px;
+  width: 80px;
+  border-radius: 5px;
+  padding: 10px 10px;
+  border: none;
+  background-color: white;
+}
+.return-button:hover {
+  cursor: pointer;
+}
