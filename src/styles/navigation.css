@@ -18,11 +18,27 @@
   justify-content: center;
   text-decoration: none;
 }
+
+h3 {
+  text-align: center;
+  margin-top: 25px;
+}
+
+h2 {
+  margin-top: 10px;
+}
+
 .regisForm {
   display: grid;
   align-items: center;
   justify-content: center;
+  margin-top: 0px;
 }
+
 .regisBtn {
   margin-top: 25px;
+}
+
+.regisBtn:hover {
+    background-color: rgb(228, 221, 221);
 }

@@ -8,8 +8,10 @@ function Register() {
     const [lastName, setLastName] = useState('')
     const [email, setEmail] = useState('')
     const [password, setPassword] = useState('')
-    const [error, setError] = useState('')
-    
+
+    const [message, setMessage] = useState(null)
+    const [error, setError] = useState(null)
+
     async function handleSubmit(event) {
         event.preventDefault()
 
@@ -31,18 +33,31 @@ function Register() {
             const result = await response.json()
             console.log(result)
 
+            setMessage(result.message)
+
         } catch (error) {
-            setError(error.message)
+            // setError(error.message) 
+            setError(result.message)
         }
+
+        setFirstName('')
+        setLastName('')
+        setEmail('')
+        setPassword('')
+
     }
 
     return (
-        <div className='regisForm'>
-            <h2>Registration Form</h2>
-            <br />
-                {/* {console.result} */}
+        <>
+        <div>
+            <h3>
+                {message && <p style={{ color: 'orange' }}>{message}</p>}
+            </h3>  
+        </div>     
 
-            <br />
+        <div className='regisForm'>
+            <h2>Registration Form</h2>       
+                
             <form onSubmit={handleSubmit}>
                 <label>
                     <p>First Name: </p>
@@ -80,7 +95,9 @@ function Register() {
                 <button type='submit' className='regisBtn'>Register</button>
             </form>
         </div>
+    </>
     )
+    
 }
 
 
