@@ -6,6 +6,7 @@ import Register from "./components/Register";
 import Login from "./components/Login";
 import Account from "./components/Account";
 import Navigation from "./components/Navigation";
+import { TokenProvider } from "./components/TokenProvider";
 
 function App() {
   return (
@@ -15,18 +16,19 @@ function App() {
         Library App
       </h1>
 
-      {/* This Navigation will display across all pages */}
-      <Navigation />
-
-      <Routes>
-        {/* Default route '/' will be redirected to '/books' */}
-        <Route index element={<Navigate to="/books" replace />} />
-        <Route path="/books" element={<Books />} />
-        <Route path="/books/:id" element={<SingleBook />} />
-        <Route path="/register" element={<Register />} />
-        <Route path="/login" element={<Login />} />
-        <Route path="/account" element={<Account />} />
-      </Routes>
+      <TokenProvider>
+        {/* This Navigation will display across all pages */}
+        <Navigation />
+        <Routes>
+          {/* Default route '/' will be redirected to '/books' */}
+          <Route index element={<Navigate to="/books" replace />} />
+          <Route path="/books" element={<Books />} />
+          <Route path="/books/:id" element={<SingleBook />} />
+          <Route path="/register" element={<Register />} />
+          <Route path="/login" element={<Login />} />
+          <Route path="/account" element={<Account />} />
+        </Routes>
+      </TokenProvider>
     </>
   );
 }
