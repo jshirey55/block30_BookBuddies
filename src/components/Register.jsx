@@ -36,8 +36,8 @@ function Register() {
             setMessage(result.message)
 
         } catch (error) {
-            // setError(error.message) 
-            setError(result.message)
+            setError(error.message) 
+            // setError(result.message)
         }
 
         setFirstName('')
@@ -51,7 +51,9 @@ function Register() {
         <>
         <div>
             <h3>
-                {message && <p style={{ color: 'orange' }}>{message}</p>}
+                {message && <p style={{ color: 'green' }}>{message}</p>}
+                {/* {error && <p style={{ color: 'red' }}>{error}</p>} */}
+
             </h3>  
         </div>     
 
