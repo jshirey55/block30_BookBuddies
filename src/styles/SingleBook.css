@@ -1,0 +1,49 @@
+.see-details-page {
+  margin: 3.5rem auto;
+  padding: 3rem;
+  max-width: 650px;
+  width: 100%;
+  background-color: #f5f0e8;
+  border-radius: 12px;
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.06);
+  text-align: center;
+  box-sizing: border-box;
+}
+
+.see-details-page h2 {
+  font-size: 2.2rem;
+  font-weight: 700;
+  color: #2c2c2c;
+  margin-bottom: 1.2rem;
+}
+
+.see-details-page p strong {
+  display: block;
+  font-size: 1.1rem;
+  font-weight: 600;
+  color: #3c3c3c;
+  margin-bottom: 0.4rem;
+}
+
+.see-details-page p {
+  font-size: 1rem;
+  color: #4f4f4f;
+  line-height: 1.7;
+  margin-bottom: 2.5rem;
+  padding: 0 0.5rem;
+}
+
+.see-details-page button {
+  font-size: 1rem;
+  font-weight: 500;
+  background-color: #0057b8;
+  color: #fff;
+  border: none;
+  cursor: pointer;
+  border-radius: 6px;
+  transition: background-color 0.3s ease;
+}
+
+.see-details-page button:hover {
+  background-color: #004199;
+}
