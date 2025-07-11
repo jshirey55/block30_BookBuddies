@@ -2,6 +2,8 @@ import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import { useContext } from "react";
 import TokenContext from "./TokenContext";
+import "../styles/SingleBook.css";
+
 
 const useAuth = () => ({ isLoggedIn: true });
 
@@ -21,6 +23,7 @@ function SingleBook() {
         const res = await fetch(
           `https://fsa-book-buddy-b6e748d1380d.herokuapp.com/api/books/${id}`
         );
+
         if (!res.ok) throw new Error("Book not found");
         const data = await res.json();
         setBook(data);
@@ -34,8 +37,8 @@ function SingleBook() {
   }, [id]);
 
   async function handleCheckoutClick(id) {
-    // setIsModalOpen(true);
-    console.log("reserve book" + id);
+    // setIsModalOpen(true); // Uncomment this if you want a confirmation modal
+    console.log("reserve book " + id);
     try {
       const response = await fetch(
         `https://fsa-book-buddy-b6e748d1380d.herokuapp.com/api/reservations`,
@@ -61,12 +64,14 @@ function SingleBook() {
   const handleCloseModal = () => {
     setIsModalOpen(false);
   };
+
   const handleConfirmCheckout = () => {
     alert("Book checked out!");
     setIsModalOpen(false);
   };
+
   return (
-    <div className="single-book">
+    <div className="see-details-page">
       {loading && <p>Loading book details...</p>}
       {error && <p>Error: {error}</p>}
       {book && (
@@ -97,29 +102,6 @@ function SingleBook() {
           )}
         </>
       )}
-      {/* Minimal CSS */}
-      <style>{`
-        .modal-overlay {
-          position: fixed;
-          top: 0;
-          left: 0;
-          width: 100%;
-          height: 100%;
-          background: rgba(0,0,0,0.5);
-          display: flex;
-          align-items: center;
-          justify-content: center;
-        }
-        .modal-content {
-          background: #fff;
-          padding: 2rem;
-          border-radius: 8px;
-          box-shadow: 0 4px 12px rgba(0,0,0,0.3);
-        }
-        .modal-content button {
-          margin-right: 1rem;
-        }
-      `}</style>
     </div>
   );
 }
