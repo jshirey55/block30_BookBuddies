@@ -8,7 +8,9 @@ import "../styles/books.css";
 
 function Books() {
   const [books, setBooks] = useState();
+  const [searchTerm, setSearchTerm] = useState("");
 
+  //fetches all books
   useEffect(() => {
     async function getBooks() {
       //call fetchAllBooks() function from ../api/index.js
@@ -20,14 +22,20 @@ function Books() {
     getBooks();
   }, []);
 
+  //filter which array of books to map out
+  const booksToMap = searchTerm
+    ? books.filter((book) => book.title.toLowerCase().includes(searchTerm))
+    : books;
+
   //map the array of books and for each book it return: <div className="single-book"> ... </div>
   function mapBooks() {
-    
+    return booksToMap.map((book) => {
+      const available = book.available ? (
+        book.title
+      ) : (
+        <span style={{ color: "red" }}>{book.title}</span>
+      );
 
-    return books.map((book) => {
-      const available = book.available ? book.title :
-      <span style={{ color: 'red' }}>{book.title}</span>
-      
       return (
         <div className="single-book" key={book.id}>
           <img id="logo-icon" src={bookIcon} />
@@ -52,6 +60,17 @@ function Books() {
   return (
     <div>
       <h2>Welcome to BookBuddies</h2>
+      <div className="search-bar-container">
+        <label>
+          Search:
+          <input
+            type="text"
+            placeholder="Search"
+            value={searchTerm}
+            onChange={(evt) => setSearchTerm(evt.target.value.toLowerCase())}
+          />
+        </label>
+      </div>
       {/* Conditional Render: checks if there is something in 'books' before it renders the mapBooks() */}
       {books && <div className="books-container">{mapBooks()}</div>}
     </div>
